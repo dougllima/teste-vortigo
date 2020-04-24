@@ -17,24 +17,42 @@ import pikachuMd from "../assets/img/pikachu@2x.png";
 import pikachuLg from "../assets/img/pikachu@3x.png";
 
 const useStyles = makeStyles((theme) => ({
-  [theme.breakpoints.down("827")]: {
-    logoContainer: {
-      textAlign: "center",
-      height: "40vh",
+  rootContainer: {
+    height: "100%",
+  },
+  logoContainer: {
+    textAlign: "center",
+    [theme.breakpoints.down("1241")]: {
+      height: "40%",
     },
-    buttonContainer: {
-      textAlign: "center",
-      height: "20vh",
+    [theme.breakpoints.up("1242")]: {
+      height: "50%",
     },
-    footerContainer: {
-      position: "relative",
-      height: "40vh",
+  },
+  buttonContainer: {
+    textAlign: "center",
+    [theme.breakpoints.down("1241")]: {
+      height: "20%",
     },
+  },
+  pikachuContainer: {
+    position: "relative",
+    [theme.breakpoints.down("1241")]: {
+      height: "40%",
+    },
+  },
+  pikachu: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+  },
+  [theme.breakpoints.up("828")]: {
     pikachu: {
-      position: "absolute",
-      bottom: 0,
-      right: 0,
+      right: theme.spacing(-1),
     },
+  },
+  button: {
+    [theme.breakpoints.up("1242")]: {},
   },
 }));
 
@@ -54,26 +72,54 @@ const Home = (props) => {
     pikachu: sm ? pikachu : lg ? pikachuLg : pikachuMd,
   };
 
+  const renderLogo = () => (
+    <Grid item className={classes.logoContainer} direction="column" lg={6}>
+      <React.Fragment>
+        <img src={imgs.logo} alt="Pokémon Logo" />
+        <img src={imgs.finder} alt="Finder" />
+      </React.Fragment>
+    </Grid>
+  );
+
+  const renderButton = () => (
+    <Grid item className={classes.buttonContainer} lg={6}>
+      <Button
+        variant="contained"
+        color="primary"
+        disableElevation
+        className={classes.button}
+      >
+        Let's Go!
+      </Button>
+    </Grid>
+  );
+
+  const renderPikachu = () => (
+    <Grid item className={classes.pikachuContainer} lg={6}>
+      <img src={imgs.pikachu} alt="Pikachu" className={classes.pikachu} />
+    </Grid>
+  );
+
   return (
     <Grid
       container={true}
-      direction={sm ? "column" : "row"}
+      direction={lg ? "row" : "column"}
       alignItems="stretch"
       spacing={4}
+      className={classes.rootContainer}
     >
-      <Grid item className={classes.logoContainer}>
-        <img src={imgs.logo} alt="Pokémon Logo" />
-        <img src={imgs.finder} alt="Finder" />
-      </Grid>
-      <Grid item className={classes.buttonContainer}>
-        {/* Não deixei o botão tão largo por opção pessoal mesmo, prefiro assim */}
-        <Button variant="contained" color="primary" disableElevation>
-          Let's Go!
-        </Button>
-      </Grid>
-      <Grid item className={classes.footerContainer}>
-        <img src={imgs.pikachu} alt="Pikachu" className={classes.pikachu} />
-      </Grid>
+      {renderLogo()}
+      {!lg ? (
+        <React.Fragment>
+          {renderButton()}
+          {renderPikachu()}
+        </React.Fragment>
+      ) : (
+        <Grid container lg={12} spacing={0}>
+          {renderButton()}
+          {renderPikachu()}
+        </Grid>
+      )}
     </Grid>
   );
 };

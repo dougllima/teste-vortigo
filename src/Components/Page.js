@@ -16,18 +16,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
     background: "no-repeat center",
-    backgroundSize: "100% 100vh",
     [theme.breakpoints.down("827")]: {
+      maxHeight: "736px",
       maxWidth: "414px",
       backgroundImage: `url(${bg})`,
+      backgroundSize: "414px 736px",
     },
     [theme.breakpoints.up("828")]: {
+      maxHeight: "1472px",
       maxWidth: "828px",
       backgroundImage: `url(${bgMd})`,
+      backgroundSize: "828px 1472px",
     },
     [theme.breakpoints.up("1242")]: {
-      maxWidth: "1242px",
+      maxHeight: "1242px",
+      maxWidth: "2208px",
       backgroundImage: `url(${bgLg})`,
+      backgroundSize: "2208px 1242px",
     },
   },
 }));
