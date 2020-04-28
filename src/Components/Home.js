@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "./../Contexts/UserContext";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Grid, Button } from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import pokemonLogo from "../assets/img/pokemon-logo.png";
 import pokemonLogoMd from "../assets/img/pokemon-logo@2x.png";
@@ -52,13 +54,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   button: {
-    [theme.breakpoints.up("1242")]: {},
+    [theme.breakpoints.up("1242")]: {
+      //TODO: Aumentar Botão
+    },
   },
 }));
 
 const Home = (props) => {
   const theme = useTheme();
   const classes = useStyles();
+  const { username, favType } = useContext(UserContext);
 
   //Verifica se o tamanho da tela corresponde aos breakpoints das imagens
   const sm = useMediaQuery(theme.breakpoints.down("827"));
@@ -83,14 +88,16 @@ const Home = (props) => {
 
   const renderButton = () => (
     <Grid item className={classes.buttonContainer} lg={6}>
-      <Button
-        variant="contained"
-        color="primary"
-        disableElevation
-        className={classes.button}
-      >
-        Let's Go!
-      </Button>
+      <Link to={!username || !favType ? "/register" : "/finder"}>
+        <Button
+          variant="contained"
+          color="primary"
+          disableElevation
+          className={classes.button}
+        >
+          Let's Go!
+        </Button>
+      </Link>
     </Grid>
   );
 
@@ -102,11 +109,11 @@ const Home = (props) => {
 
   return (
     <Grid
-      container={true}
+      className={classes.rootContainer}
       direction={lg ? "row" : "column"}
       alignItems="stretch"
       spacing={4}
-      className={classes.rootContainer}
+      container
     >
       {renderLogo()}
       {!lg ? (

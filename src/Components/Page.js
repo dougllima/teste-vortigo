@@ -12,6 +12,8 @@ import bg from "./../assets/img/bg.png";
 import bgMd from "./../assets/img/bg@2x.png";
 import bgLg from "./../assets/img/bg@3x.png";
 
+import Finder from "./Finder";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
@@ -44,7 +46,8 @@ const Page = (props) => {
     <Container className={classes.root}>
       <Router>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route path="/" component={Home} exact />
+          <Route path="/finder" component={Finder} />
           <Route path="/register" component={Register} />
         </Switch>
       </Router>
