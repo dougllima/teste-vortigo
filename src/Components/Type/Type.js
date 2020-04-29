@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Grid, makeStyles, Typography } from "@material-ui/core";
+
+import { UserContext } from "../../Contexts/UserContext";
 
 import radioOn from "../../assets/img/radio-on.png";
 import radioOff from "../../assets/img/radio-off.png";
@@ -12,8 +14,9 @@ const useStyle = makeStyles((theme) => ({
   nameContainer: {},
 }));
 
-const Type = ({ name, thumbnailImage, showSelect, selected }) => {
+const Type = ({ name, thumbnailImage, showSelect }) => {
   const classes = useStyle();
+  const { favType } = useContext(UserContext);
 
   return (
     <Grid container direction="row" spacing={0}>
@@ -26,8 +29,8 @@ const Type = ({ name, thumbnailImage, showSelect, selected }) => {
       {showSelect && (
         <Grid item xs={2}>
           <img
-            src={selected ? radioOn : radioOff}
-            alt={selected ? "Unselect" : "Select"}
+            src={favType === name ? radioOn : radioOff}
+            alt={favType === name ? "Unselect" : "Select"}
           />
         </Grid>
       )}

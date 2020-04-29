@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Home from "./Home";
-import Register from "./Register";
+import Register from "./Register/Register";
 
 import bg from "./../assets/img/bg.png";
 import bgMd from "./../assets/img/bg@2x.png";

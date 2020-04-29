@@ -19,6 +19,7 @@
 - Tela de lista.
 
 - Quebrar componente de cadastro em componentes menores
+- Transformar medidas de tela em sm, md, lg...
 - Tratar erros da request
 - Corrigir responsividade fora da tela inicial
 - Organizar o código
