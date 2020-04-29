@@ -78,7 +78,7 @@ const Home = (props) => {
   };
 
   const renderLogo = () => (
-    <Grid item className={classes.logoContainer} direction="column" lg={6}>
+    <Grid item className={classes.logoContainer} lg={6}>
       <React.Fragment>
         <img src={imgs.logo} alt="Pokémon Logo" />
         <img src={imgs.finder} alt="Finder" />

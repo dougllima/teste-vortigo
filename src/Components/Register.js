@@ -13,11 +13,11 @@ import {
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import TypeList from "./Type/TypeList";
 import { UserContext } from "../Contexts/UserContext";
 
 import arrow from "./../assets/img/arrow@2x.png";
 import next from "./../assets/img/next.png";
-import { Type } from "./Type/Type";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
@@ -43,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
   },
   selectArrow: {
     transform: "rotate(180deg)",
+  },
+  drawer: {
+    maxHeight: "60%",
   },
 }));
 
@@ -188,8 +191,13 @@ const Register = () => {
       </Grid>
       <Grid item className={classes.inputContainer}>
         {renderInputGroup()}
-        <Drawer anchor={"bottom"} open={drawer} onClose={toggleDrawer(false)}>
-          <Type />
+        <Drawer
+          anchor={"bottom"}
+          open={drawer}
+          onClose={toggleDrawer(false)}
+          classes={{ paper: classes.drawer }}
+        >
+          <TypeList />
         </Drawer>
       </Grid>
       <Grid item className={classes.nextContainer}>

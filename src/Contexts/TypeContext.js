@@ -7,11 +7,9 @@ export const TypeProvider = (props) => {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    getTypes()
-      .then((res) => {
-        setTypes(res);
-      })
-      .catch((err) => console.log(err));
+    getTypes().then((res) => {
+      setTypes(res);
+    });
   }, []);
 
   return (
