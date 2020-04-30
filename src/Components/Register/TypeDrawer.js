@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TypeDrawer = (props) => {
   const classes = useStyles();
-  const { drawer, setDrawer, handleTypeSelect } = props;
+  const { drawer, setDrawer, handleTypeSelect, favType } = props;
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -31,7 +31,12 @@ const TypeDrawer = (props) => {
       classes={{ paper: classes.drawer }}
     >
       <Typography variant="h5">Select your favorite pokémon type</Typography>
-      <TypeList handleTypeSelect={handleTypeSelect} showSelect={true} />
+      <TypeList
+        handleTypeSelect={handleTypeSelect}
+        showSelect={true}
+        direction="column"
+        selectedTypes={[favType]}
+      />
     </Drawer>
   );
 };

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { getTypes } from "../Service/Service";
 
-export const TypeContext = createContext([]);
+export const TypeContext = createContext({});
 
 export const TypeProvider = (props) => {
   const [types, setTypes] = useState([]);

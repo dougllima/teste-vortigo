@@ -7,20 +7,15 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import TypeDrawer from "./TypeDrawer";
+import BackHeader from "../BackHeader";
 import { UserContext } from "../../Contexts/UserContext";
 
-import arrow from "./../../assets/img/arrow@2x.png";
 import next from "./../../assets/img/next.png";
 import RegisterInput from "./RegisterInput";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
     textAlign: "center",
-  },
-  backContainer: {
-    height: "100px",
-    textAlign: "left",
-    marginTop: theme.spacing(2),
   },
   textContainer: {
     height: "163px",
@@ -31,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
   },
   nextContainer: {
     height: "123px",
-  },
-  arrow: {
-    transform: "rotate(270deg)",
   },
   selectArrow: {
     transform: "rotate(180deg)",
@@ -56,10 +48,10 @@ const Register = () => {
   const handleNext = () => {
     if (step === 1) {
       if (username !== "") setStep(2);
-      else setError({ nameError: "Required Field" });
+      else setError("Required Field");
     } else {
       if (favType !== "") history.push("/finder");
-      else setError({ typeError: "Required Field" });
+      else setError("Required Field");
     }
   };
 
@@ -80,7 +72,9 @@ const Register = () => {
   };
 
   const renderDrawer = () => (
-    <TypeDrawer {...{ drawer, setDrawer, handleTypeSelect }}></TypeDrawer>
+    <TypeDrawer
+      {...{ drawer, setDrawer, handleTypeSelect, favType }}
+    ></TypeDrawer>
   );
 
   return (
@@ -91,16 +85,7 @@ const Register = () => {
       direction={lg ? "row" : "column"}
       className={classes.rootContainer}
     >
-      <Grid item className={classes.backContainer}>
-        <Button>
-          <img
-            src={arrow}
-            alt={"Back"}
-            className={classes.arrow}
-            onClick={handleBack}
-          />
-        </Button>
-      </Grid>
+      <BackHeader {...{ handleBack }} />
       <Grid item className={classes.textContainer}>
         <Typography variant="h4">
           {step === 1

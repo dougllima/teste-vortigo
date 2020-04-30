@@ -7,6 +7,7 @@ import {
 import Page from "./Components/Page";
 import { UserProvider } from "./Contexts/UserContext";
 import { TypeProvider } from "./Contexts/TypeContext";
+import { PokemonProvider } from "./Contexts/PokemonContext";
 
 let theme = createMuiTheme({
   palette: {
@@ -26,7 +27,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <UserProvider>
         <TypeProvider>
-          <Page />
+          <PokemonProvider>
+            <Page />
+          </PokemonProvider>
         </TypeProvider>
       </UserProvider>
     </ThemeProvider>
