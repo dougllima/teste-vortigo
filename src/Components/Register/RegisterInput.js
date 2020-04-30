@@ -24,15 +24,14 @@ const RegisterInput = ({ step, openType, error }) => {
 
   return (
     <>
-      <Typography variant="h5">
+      <Typography variant="h4">
         {step === 1
           ? "First we need to know your name..."
           : "...now tell us wich is your favorite Pokemon type:"}
       </Typography>
       <br />
       <TextField
-        fullWidth
-        disabled={Boolean(step === 2)}
+        readOnly={Boolean(step === 2)}
         label={step === 1 ? "Name" : "Pokemon Type"}
         color="secondary"
         value={step === 1 ? username : favType}

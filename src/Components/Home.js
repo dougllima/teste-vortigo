@@ -24,23 +24,29 @@ const useStyles = makeStyles((theme) => ({
   },
   logoContainer: {
     textAlign: "center",
-    [theme.breakpoints.down("1241")]: {
+    [theme.breakpoints.up("sm")]: {
       height: "40%",
     },
-    [theme.breakpoints.up("1242")]: {
+    [theme.breakpoints.up("lg")]: {
       height: "50%",
     },
   },
   buttonContainer: {
     textAlign: "center",
-    [theme.breakpoints.down("1241")]: {
+    [theme.breakpoints.up("sm")]: {
       height: "20%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "50%",
     },
   },
   pikachuContainer: {
     position: "relative",
-    [theme.breakpoints.down("1241")]: {
+    [theme.breakpoints.up("sm")]: {
       height: "40%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "100%",
     },
   },
   pikachu: {
@@ -48,13 +54,13 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
   },
-  [theme.breakpoints.up("828")]: {
+  [theme.breakpoints.up("sm")]: {
     pikachu: {
       right: theme.spacing(-1),
     },
   },
   button: {
-    [theme.breakpoints.up("1242")]: {
+    [theme.breakpoints.up("lg")]: {
       //TODO: Aumentar Botão
     },
   },
@@ -65,16 +71,13 @@ const Home = (props) => {
   const classes = useStyles();
   const { username, favType } = useContext(UserContext);
 
-  //Verifica se o tamanho da tela corresponde aos breakpoints das imagens
-  const sm = useMediaQuery(theme.breakpoints.down("827"));
-  // Não precisa verificar o MD, pois quando passar do SM ele vai ser sempre verdadeiro (até quando for LG)
-  //const md = useMediaQuery(theme.breakpoints.up("828"));
-  const lg = useMediaQuery(theme.breakpoints.up("1242"));
+  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const imgs = {
-    logo: sm ? pokemonLogo : lg ? pokemonLogoLg : pokemonLogoMd,
-    finder: sm ? finder : lg ? finderLg : finderMd,
-    pikachu: sm ? pikachu : lg ? pikachuLg : pikachuMd,
+    logo: isSm ? pokemonLogo : isLg ? pokemonLogoLg : pokemonLogoMd,
+    finder: isSm ? finder : isLg ? finderLg : finderMd,
+    pikachu: isSm ? pikachu : isLg ? pikachuLg : pikachuMd,
   };
 
   const renderLogo = () => (
@@ -110,19 +113,19 @@ const Home = (props) => {
   return (
     <Grid
       className={classes.rootContainer}
-      direction={lg ? "row" : "column"}
+      direction={isLg ? "row" : "column"}
       alignItems="stretch"
       spacing={4}
       container
     >
       {renderLogo()}
-      {!lg ? (
+      {!isLg ? (
         <React.Fragment>
           {renderButton()}
           {renderPikachu()}
         </React.Fragment>
       ) : (
-        <Grid container lg={12} spacing={0}>
+        <Grid container spacing={0}>
           {renderButton()}
           {renderPikachu()}
         </Grid>

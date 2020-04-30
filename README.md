@@ -8,18 +8,14 @@
 
 # "Plus a mais"
 
-- Alterar Cadastro
 - Responsividade
 - Log off
 - Ficha do pokemon
 
 # TO-DO
 
-- Selecionar tipo favorito.
-- Tela de lista.
-
 - Quebrar componente de cadastro em componentes menores
 - Transformar medidas de tela em sm, md, lg...
 - Tratar erros da request
-- Corrigir responsividade fora da tela inicial
 - Organizar o código
+- Otimizar (ou adicionar loader) na lista

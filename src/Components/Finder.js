@@ -11,14 +11,14 @@ import PokemonList from "./Pokemon/PokemonList";
 
 const useStyles = makeStyles((theme) => ({
   titleContainer: {
-    [theme.breakpoints.down("827")]: {
+    [theme.breakpoints.down("md")]: {
       height: "60px",
       textAlign: "center",
       paddingTop: theme.spacing(2),
     },
   },
   contentContainer: {
-    [theme.breakpoints.down("827")]: {
+    [theme.breakpoints.down("md")]: {
       height: "590px",
     },
   },

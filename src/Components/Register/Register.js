@@ -11,21 +11,39 @@ import BackHeader from "../BackHeader";
 import { UserContext } from "../../Contexts/UserContext";
 
 import next from "./../../assets/img/next.png";
+import nextx2 from "./../../assets/img/next@2x.png";
+import nextx3 from "./../../assets/img/next@3x.png";
+
 import RegisterInput from "./RegisterInput";
 
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
+    height: "100%",
     textAlign: "center",
   },
   textContainer: {
-    height: "163px",
+    [theme.breakpoints.down("md")]: {
+      height: "30%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "30%",
+    },
   },
   inputContainer: {
-    height: "350px",
-    padding: theme.spacing(2, 6) + "!important",
+    [theme.breakpoints.down("md")]: {
+      height: "35%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "40%",
+    },
   },
   nextContainer: {
-    height: "123px",
+    [theme.breakpoints.down("md")]: {
+      height: "25%",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "15%",
+    },
   },
   selectArrow: {
     transform: "rotate(180deg)",
@@ -43,7 +61,10 @@ const Register = () => {
   const [error, setError] = useState("");
   const [drawer, setDrawer] = useState(false);
 
-  const lg = useMediaQuery(theme.breakpoints.up("1242"));
+  const isSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
+
+  const nextImg = isSm ? next : isLg ? nextx3 : nextx2;
 
   const handleNext = () => {
     if (step === 1) {
@@ -82,7 +103,7 @@ const Register = () => {
       container
       spacing={4}
       alignItems="stretch"
-      direction={lg ? "row" : "column"}
+      direction={"column"}
       className={classes.rootContainer}
     >
       <BackHeader {...{ handleBack }} />
@@ -99,7 +120,7 @@ const Register = () => {
       </Grid>
       <Grid item className={classes.nextContainer}>
         <Button>
-          <img src={next} alt="Next" onClick={handleNext} />
+          <img src={nextImg} alt="Next" onClick={handleNext} />
         </Button>
       </Grid>
     </Grid>

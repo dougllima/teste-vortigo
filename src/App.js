@@ -10,6 +10,13 @@ import { TypeProvider } from "./Contexts/TypeContext";
 import { PokemonProvider } from "./Contexts/PokemonContext";
 
 let theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      sm: 414,
+      md: 828,
+      lg: 1242,
+    },
+  },
   palette: {
     primary: {
       main: "#f11e76",

@@ -18,19 +18,19 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
     background: "no-repeat center",
-    [theme.breakpoints.down("827")]: {
+    [theme.breakpoints.down("md")]: {
       maxHeight: "736px",
       maxWidth: "414px",
       backgroundImage: `url(${bg})`,
       backgroundSize: "414px 736px",
     },
-    [theme.breakpoints.up("828")]: {
+    [theme.breakpoints.up("md")]: {
       maxHeight: "1472px",
       maxWidth: "828px",
       backgroundImage: `url(${bgMd})`,
       backgroundSize: "828px 1472px",
     },
-    [theme.breakpoints.up("1242")]: {
+    [theme.breakpoints.up("lg")]: {
       maxHeight: "1242px",
       maxWidth: "2208px",
       backgroundImage: `url(${bgLg})`,

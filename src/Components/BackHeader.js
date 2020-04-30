@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   backContainer: {
-    height: `50px`,
+    height: "7%",
     textAlign: "left",
     marginTop: theme.spacing(2),
   },
