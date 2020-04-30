@@ -20,3 +20,8 @@
 - ❌Tratar erros da request
 - ❌Organizar o código
 - ❌Otimizar (ou adicionar loader) na lista
+
+## Observações:
+
+- Lista com um pequeno problema de performance, facil de corrigir com um loader.
+- Optei por utilizar varios recursos da linguagem sempre que possivel, só para mostrar cenarios onde eles poderiam ser usados, mesmo que não fossem extremamente necessarios (useMemo e etc)
