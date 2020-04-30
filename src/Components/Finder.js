@@ -1,7 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Grid, Paper, makeStyles, Typography } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  makeStyles,
+  Typography,
+  TextField,
+} from "@material-ui/core";
 
 import { UserContext } from "./../Contexts/UserContext";
 
@@ -11,15 +17,25 @@ import PokemonList from "./Pokemon/PokemonList";
 
 const useStyles = makeStyles((theme) => ({
   titleContainer: {
-    [theme.breakpoints.down("md")]: {
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
       height: "60px",
-      textAlign: "center",
+      paddingTop: theme.spacing(2),
+    },
+    [theme.breakpoints.down("md")]: {
+      height: "90px",
       paddingTop: theme.spacing(2),
     },
   },
   contentContainer: {
-    [theme.breakpoints.down("md")]: {
-      height: "590px",
+    [theme.breakpoints.down("sm")]: {
+      height: "558px",
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "1295px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "1126px",
     },
   },
 }));

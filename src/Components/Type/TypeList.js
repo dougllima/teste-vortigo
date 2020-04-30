@@ -10,7 +10,15 @@ const useStyle = makeStyles((theme) => ({
     justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    width: `calc(414px - ${theme.spacing(4)}px)`,
+    [theme.breakpoints.down("sm")]: {
+      width: "366px",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "780px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: "2000px",
+    },
   },
   gridList: {
     flexWrap: "nowrap",
@@ -31,12 +39,7 @@ const TypeList = ({
   return direction === "column" ? (
     <Grid container direction={direction} spacing={2}>
       {context.types.map((type) => (
-        <Grid
-          item
-          key={type.name}
-          onClick={() => handleTypeSelect(type)}
-          xs={direction === "row" ? 3 : null}
-        >
+        <Grid item key={type.name} onClick={() => handleTypeSelect(type)}>
           <Type
             {...{ ...type, showSelect, direction }}
             selected={selectedTypes.includes(type.name)}

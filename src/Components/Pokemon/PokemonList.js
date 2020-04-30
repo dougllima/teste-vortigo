@@ -1,13 +1,28 @@
-import React, { useContext, useMemo } from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import React, { useContext, useMemo, useState, useEffect } from "react";
+import {
+  Grid,
+  makeStyles,
+  TextField,
+  InputAdornment,
+  Button,
+} from "@material-ui/core";
 
+import SearchIcon from "@material-ui/icons/Search";
 import Pokemon from "./Pokemon";
 
 import { PokemonContext } from "./../../Contexts/PokemonContext";
 
 const useStyle = makeStyles((theme) => ({
   listContainer: {
-    maxHeight: "500px",
+    [theme.breakpoints.down("sm")]: {
+      height: "440px",
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "1205px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "1024px",
+    },
     overflowY: "scroll",
   },
 }));
@@ -15,9 +30,13 @@ const useStyle = makeStyles((theme) => ({
 const PokemonList = ({ typeFilter }) => {
   const classes = useStyle();
 
+  const [search, setSearch] = useState("");
+  const [displayList, setDisplayList] = useState([]);
+
   const { pokemonsByType } = useContext(PokemonContext);
 
-  var memoList = useMemo(() => {
+  // Memoise nas listas por filtros de tipo, pra facilitar o load depois
+  let memoListByFilter = useMemo(() => {
     if (pokemonsByType) {
       let unsortedList = {};
       typeFilter.forEach((e) => {
@@ -37,16 +56,65 @@ const PokemonList = ({ typeFilter }) => {
     }
   }, [typeFilter, pokemonsByType]);
 
-  return (
-    <Grid container className={classes.listContainer}>
-      {Object.values(memoList).map((pokemon) => {
-        return (
-          <Grid item xs={6} key={pokemon.name}>
-            <Pokemon {...pokemon} />
-          </Grid>
+  //Transforma a lista de tipo na lista de exibição
+  // (para poder buscar sem afetar a lista já memoizada e não afetar performance)
+  useEffect(() => {
+    setDisplayList(memoListByFilter);
+    if (search !== "") doSearch();
+  }, [memoListByFilter]);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const doSearch = () => {
+    if (search !== "") {
+      setDisplayList((state) => {
+        let matchs = Object.keys(state).filter((name) =>
+          name.toLowerCase().startsWith(search.toLowerCase())
         );
-      })}
-    </Grid>
+
+        console.log(matchs);
+        return matchs.reduce(
+          (acc, key) => ({
+            ...acc,
+            [key]: state[key],
+          }),
+          {}
+        );
+      });
+    } else {
+      setDisplayList(memoListByFilter);
+    }
+  };
+
+  return (
+    <>
+      <TextField
+        fullWidth
+        placeholder="Search"
+        value={search}
+        onChange={handleSearch}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <Button onClick={doSearch}>
+                <SearchIcon />
+              </Button>
+            </InputAdornment>
+          ),
+        }}
+      />
+      <Grid container className={classes.listContainer}>
+        {Object.values(displayList).map((pokemon) => {
+          return (
+            <Grid item sm={6} md={3} lg={2} key={pokemon.name}>
+              <Pokemon {...pokemon} />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 export default PokemonList;
