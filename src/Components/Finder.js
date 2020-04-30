@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 import { Grid, Paper, makeStyles, Typography } from "@material-ui/core";
 
 import { UserContext } from "./../Contexts/UserContext";
-import { PokemonContext } from "./../Contexts/PokemonContext";
 
 import BackHeader from "./BackHeader";
 import TypeList from "./Type/TypeList";
+import PokemonList from "./Pokemon/PokemonList";
 
 const useStyles = makeStyles((theme) => ({
   titleContainer: {
@@ -29,24 +29,17 @@ const Finder = () => {
   const history = useHistory();
 
   const { username, favType } = useContext(UserContext);
-  const { currentList, filterByType, findByName, sort } = useContext(
-    PokemonContext
-  );
 
   const [typeFilter, setTypeFilter] = useState([favType]);
-
-  useEffect(() => {
-    filterByType(typeFilter);
-  }, [typeFilter]);
 
   if (!username || !favType) {
     history.push("/register");
   }
 
   const handleTypeSelect = (type) => {
-    if (typeFilter.includes(type))
-      setTypeFilter((state) => state.filter((e) => e !== type));
-    else setTypeFilter((state) => [...state, type]);
+    if (typeFilter.includes(type.name))
+      setTypeFilter((state) => state.filter((e) => e !== type.name));
+    else setTypeFilter((state) => [...state, type.name]);
   };
 
   const handleBack = () => {
@@ -67,7 +60,7 @@ const Finder = () => {
             selectedTypes={typeFilter}
             handleTypeSelect={handleTypeSelect}
           />
-          <Grid container></Grid>
+          <PokemonList typeFilter={typeFilter} />
         </Paper>
       </Grid>
     </Grid>

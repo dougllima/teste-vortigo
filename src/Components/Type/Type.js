@@ -36,7 +36,14 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Type = ({ name, thumbnailImage, showSelect, selected, direction }) => {
+const Type = ({
+  name,
+  thumbnailImage,
+  showSelect,
+  selected,
+  direction,
+  onClick,
+}) => {
   const classes = useStyle();
 
   const renderColumn = () => {
@@ -62,7 +69,11 @@ const Type = ({ name, thumbnailImage, showSelect, selected, direction }) => {
 
   const renderRow = () => {
     return (
-      <GridListTile key={name} className={classes.rowContanier}>
+      <GridListTile
+        onClick={onClick}
+        key={name}
+        className={classes.rowContanier}
+      >
         <img
           src={thumbnailImage}
           alt={name}

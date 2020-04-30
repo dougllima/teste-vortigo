@@ -25,7 +25,6 @@ const TypeList = ({
   handleTypeSelect,
   direction,
 }) => {
-  console.log(selectedTypes);
   const context = useContext(TypeContext);
   const classes = useStyle();
 
