@@ -24,4 +24,7 @@
 ## Observações:
 
 - Lista com um pequeno problema de performance, facil de corrigir com um loader.
+
 - Optei por utilizar varios recursos da linguagem sempre que possivel, só para mostrar cenarios onde eles poderiam ser usados, mesmo que não fossem extremamente necessarios (useMemo e etc)
+
+- Na parte de responsividade: Utilizei os 3 tamanhos de imagem que passaram como base, Mas ainda quero trabalhar melhor em cima disso para tamanhos "reais"
